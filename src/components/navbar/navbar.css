@@ -1,0 +1,13 @@
+.navbar{
+    width: 100vw;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 1rem;
+}
+
+.navbar__icon{
+    font-size: 2rem;
+    cursor: pointer;
+}
