@@ -2,9 +2,11 @@
     width: 100vw;
     height: 2rem;
     display: flex;
+    position: fixed;
     justify-content: space-between;
     align-items: center;
     padding-inline: 1rem;
+    background-color: white;
 }
 
 .navbar__icon{
