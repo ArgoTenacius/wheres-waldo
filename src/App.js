@@ -13,12 +13,6 @@ const App = () => {
     setRankList(rank);
   }
 
-  /*
-  const createUser = async () => {
-    await addDoc(usersCollectionRef, {name: "Jane Doe", time: 20})
-  }
-  */
-
   useEffect(() => {
     getRankList();
   }, [])

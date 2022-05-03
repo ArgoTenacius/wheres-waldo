@@ -6,8 +6,20 @@ const Game = () => {
   const gameMain = useRef();
   const gameImg = useRef();
 
+  const waldoCoordX = 0.49;
+  const waldoCoordY = 0.37;
+  const range = 0.05
 
-  const imageClick = (e) => {
+  const foundWaldo = (x, y, waldoX, waldoY) => {
+    if(x > waldoCoordX - range && x < waldoCoordX + range
+    && y > waldoCoordY - range && y < waldoCoordY + range){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  const imageClick = async (e) => {
     //Will get the position of X and Y in percentage.
 
     const image_width = gameImg.current.offsetWidth;
@@ -18,6 +30,9 @@ const Game = () => {
     const clickPercentageY = image_click_y / image_height;
 
     console.log(`X: ${clickPercentageX}% | Y: ${clickPercentageY}%`);
+    const isFound = foundWaldo(clickPercentageX, clickPercentageY, waldoCoordX, waldoCoordY);
+
+    console.log(isFound)
   }
   return (
     <main ref={gameMain} className='game'>
