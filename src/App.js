@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Navbar } from './components'
+import { Game, Navbar } from './components'
 import { db } from './firebase/config'
 import { addDoc, collection, getDocs, doc, updateDoc} from 'firebase/firestore'
 
@@ -26,6 +26,7 @@ const App = () => {
   return (
     <main>
       <Navbar rankList={rankList}/>
+      <Game />
     </main>
   )
 }
