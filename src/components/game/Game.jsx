@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { default as Waldo } from "../../assets/Waldo.jpg"
 import './game.css'
 
-const Game = () => {  
+const Game = ({gameWin}) => {  
   const gameMain = useRef();
   const gameImg = useRef();
 
@@ -10,7 +10,7 @@ const Game = () => {
   const waldoCoordY = 0.37;
   const range = 0.025;
 
-  const foundWaldo = (x, y, waldoX, waldoY) => {
+  const foundWaldo = (x, y) => {
     if(x > waldoCoordX - range && x < waldoCoordX + range
     && y > waldoCoordY - range && y < waldoCoordY + range){
       return true;
@@ -31,7 +31,7 @@ const Game = () => {
 
     const isFound = foundWaldo(clickPercentageX, clickPercentageY, waldoCoordX, waldoCoordY);
     
-   //GameOver Script
+    if (isFound) { gameWin() }
   }
   return (
     <main ref={gameMain} className='game'>
