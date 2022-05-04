@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import { default as Waldo } from "../../assets/Waldo.jpg"
 import './game.css'
 
@@ -8,7 +8,7 @@ const Game = () => {
 
   const waldoCoordX = 0.49;
   const waldoCoordY = 0.37;
-  const range = 0.05
+  const range = 0.025;
 
   const foundWaldo = (x, y, waldoX, waldoY) => {
     if(x > waldoCoordX - range && x < waldoCoordX + range
@@ -29,10 +29,9 @@ const Game = () => {
     const clickPercentageX = image_click_x / image_width;
     const clickPercentageY = image_click_y / image_height;
 
-    console.log(`X: ${clickPercentageX}% | Y: ${clickPercentageY}%`);
     const isFound = foundWaldo(clickPercentageX, clickPercentageY, waldoCoordX, waldoCoordY);
-
-    console.log(isFound)
+    
+   //GameOver Script
   }
   return (
     <main ref={gameMain} className='game'>
