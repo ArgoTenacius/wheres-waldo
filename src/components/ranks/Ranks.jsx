@@ -14,7 +14,7 @@ const Ranks = ({rankList, openRank}) => {
         return () => {
           document.removeEventListener('click', checkClick);
         }
-    }, [])
+    })
     
     return (
     <section className='rank'>
