@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Game, Navbar } from './components'
+import { ApplyRank, Game, Navbar } from './components'
 import { db } from './firebase/config'
 import { addDoc, collection, getDocs, doc, updateDoc} from 'firebase/firestore'
-import { formatTime } from './util/util'
 
 const App = () => {
   const [rankList, setRankList] = useState([]);
-  //const [gameOver, setGameOver] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
   const [time, setTime] = useState(0);
   const usersCollectionRef = collection(db, "ranks");
 
@@ -17,7 +16,7 @@ const App = () => {
   }
 
   const gameWin = () => {
-    alert(`You found waldo in ${formatTime(time)}`);
+    setGameOver(true);
   }
 
   useEffect(() => {
@@ -26,7 +25,8 @@ const App = () => {
 
   return (
     <main>
-      <Navbar rankList={rankList} timer={{time, setTime}}/>
+      <Navbar rankList={rankList} timer={{time, setTime}} gameOver={gameOver}/>
+      {gameOver && <ApplyRank time={time}/>}
       <Game gameWin={gameWin}/>
     </main>
   )

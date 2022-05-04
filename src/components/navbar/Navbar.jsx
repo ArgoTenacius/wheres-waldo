@@ -4,7 +4,7 @@ import { AiOutlineMenu } from 'react-icons/ai'
 import './navbar.css'
 import Timer from '../timer/Timer';
 
-const Navbar = ({rankList, timer}) => {
+const Navbar = ({rankList, timer, gameOver}) => {
   const [isRankOpen, setIsRankOpen] = useState(false);
   
   const openRank = () => {
@@ -14,7 +14,7 @@ const Navbar = ({rankList, timer}) => {
   return (
     <main className='navbar'>
       <AiOutlineMenu onClick={() => openRank()} className='navbar__icon'/>
-      <Timer timer={timer}/>
+      <Timer timer={timer} gameOver={gameOver}/>
       {isRankOpen && <Ranks rankList={rankList} openRank={openRank} />}
     </main>
   )
