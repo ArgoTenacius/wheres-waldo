@@ -15,6 +15,14 @@ const App = () => {
     setRankList(rank);
   }
 
+  const addRank = async (name) => {
+      if (name.trim().length > 0) {
+        await addDoc(usersCollectionRef, { name: name.trim(), time: time});
+      } else {
+        console.log('invalid name');
+      }
+  }
+
   const gameWin = () => {
     setGameOver(true);
   }
@@ -26,7 +34,7 @@ const App = () => {
   return (
     <main>
       <Navbar rankList={rankList} timer={{time, setTime}} gameOver={gameOver}/>
-      {gameOver && <ApplyRank time={time}/>}
+      {gameOver && <ApplyRank time={time} addRank={addRank}/>}
       <Game gameWin={gameWin}/>
     </main>
   )
