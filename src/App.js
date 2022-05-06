@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { ApplyRank, Game, Navbar } from './components'
 import { db } from './firebase/config'
-import { addDoc, collection, getDocs, doc, updateDoc} from 'firebase/firestore'
+import { addDoc, collection, getDocs} from 'firebase/firestore'
 
 const App = () => {
   const [rankList, setRankList] = useState([]);
@@ -17,9 +17,8 @@ const App = () => {
 
   const addRank = async (name) => {
       if (name.trim().length > 0) {
+        setGameOver(false);
         await addDoc(usersCollectionRef, { name: name.trim(), time: time});
-      } else {
-        console.log('invalid name');
       }
   }
 
@@ -27,13 +26,9 @@ const App = () => {
     setGameOver(true);
   }
 
-  useEffect(() => {
-    getRankList();
-  }, [])
-
   return (
     <main>
-      <Navbar rankList={rankList} timer={{time, setTime}} gameOver={gameOver}/>
+      <Navbar rankList={rankList} getRankList={getRankList} timer={{time, setTime}} gameOver={gameOver}/>
       {gameOver && <ApplyRank time={time} addRank={addRank}/>}
       <Game gameWin={gameWin}/>
     </main>

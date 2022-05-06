@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './ranks.css';
 import { AiOutlineMenu } from 'react-icons/ai'
 import { formatTime } from '../../util/util';
 
-const Ranks = ({rankList, openRank}) => {
+const Ranks = ({rankList, getRankList, openRank}) => {
+    const sortByTime = (x, y) => {
+        return x.time - y.time;
+    }
 
     const checkClick = (e) => {
         if(e.target.closest('.rank') === null && e.target.closest('.navbar__icon') === null) { openRank() }
@@ -11,17 +14,16 @@ const Ranks = ({rankList, openRank}) => {
 
     useEffect(() => {
         document.addEventListener('click', checkClick);
+        getRankList();
+
     
         return () => {
           document.removeEventListener('click', checkClick);
         }
-    })
+    }, [])
 
-    const sortByTime = (x, y) => {
-        return x.time - y.time;
-    }
-
-    rankList.sort(sortByTime)
+    //after all the process sort the rankList
+    rankList.sort(sortByTime);
     
     return (
     <section className='rank'>
