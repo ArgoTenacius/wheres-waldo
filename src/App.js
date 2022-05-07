@@ -9,6 +9,11 @@ const App = () => {
   const [time, setTime] = useState(0);
   const usersCollectionRef = collection(db, "ranks");
 
+  const gameReset = () => {
+    setGameOver(false);
+    setTime(0);
+  }
+
   const getRankList = async () => {
     const data = await getDocs(usersCollectionRef)
     const rank = data.docs.map((doc) => ({...doc.data(), id: doc.id}))
@@ -17,7 +22,7 @@ const App = () => {
 
   const addRank = async (name) => {
       if (name.trim().length > 0) {
-        setGameOver(false);
+        gameReset();
         await addDoc(usersCollectionRef, { name: name.trim(), time: time});
       }
   }
