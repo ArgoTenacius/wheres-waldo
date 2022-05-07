@@ -9,7 +9,7 @@ const ApplyRank = ({time, addRank}) => {
     <main className='applyRank'>
         <section className='applyRank__box'>
             <h1 className='applyRank__box-mensage'>You win! Your time was: {formatTime(time)}</h1>
-            <input  ref={inputValue} placeholder='Enter Your Name here!' className='applyRank__box-input'/>
+            <input  ref={inputValue} placeholder='Enter Your Name here!' className='applyRank__box-input' maxLength={14}/>
             <button className='applyRank__box-button' onClick={() => addRank(inputValue.current.value)}>Apply</button>
         </section>
     </main>
